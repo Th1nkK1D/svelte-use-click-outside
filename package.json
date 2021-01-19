@@ -1,0 +1,39 @@
+{
+  "name": "svelte-use-click-outside",
+  "version": "0.1.0",
+  "description": "Zero dependency Svelte's action to handle click outside event",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint 'src/**/*.{js,json,ts}' --fix",
+    "np": "np"
+  },
+  "files": [
+    "/dist"
+  ],
+  "repository": "https://github.com/Th1nkK1D/svelte-use-click-outside.git",
+  "author": "Th1nkK1D <witheep@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "husky": ">=4",
+    "lint-staged": ">=10",
+    "np": "^7.2.0",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "jest"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,ts}": "eslint --cache --fix"
+  }
+}
