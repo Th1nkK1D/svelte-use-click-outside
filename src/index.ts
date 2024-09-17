@@ -2,17 +2,37 @@ export function clickOutside(
   node: HTMLElement,
   handler: () => void
 ): { destroy: () => void } {
-  const onClick = (event: MouseEvent) =>
-    node &&
-    !node.contains(event.target as HTMLElement) &&
-    !event.defaultPrevented &&
-    handler();
+  let pointerDownStartedInside = false;
 
-  document.addEventListener('click', onClick, true);
+  const onPointerDown = (event: PointerEvent) => {
+    if (
+      !event.defaultPrevented &&
+      node?.contains(event.target as HTMLElement)
+    ) {
+      pointerDownStartedInside = true;
+    }
+  };
+
+  const onPointerUp = (event: PointerEvent) => {
+    if (
+      !event.defaultPrevented &&
+      !pointerDownStartedInside &&
+      node &&
+      !node.contains(event.target as HTMLElement)
+    ) {
+      handler();
+    }
+
+    pointerDownStartedInside = false;
+  };
+
+  document.addEventListener('pointerup', onPointerUp, true);
+  document.addEventListener('pointerdown', onPointerDown, true);
 
   return {
     destroy() {
-      document.removeEventListener('click', onClick, true);
+      document.removeEventListener('pointerup', onPointerUp, true);
+      document.removeEventListener('pointerdown', onPointerDown, true);
     },
   };
 }
