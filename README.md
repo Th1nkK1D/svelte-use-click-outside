@@ -2,13 +2,15 @@
 
 Zero dependency [Svelte's action](https://svelte.dev/docs#use_action) to handle click outside event
 
-## Installation
+[![NPM Downloads](https://img.shields.io/npm/dw/svelte-use-click-outside)](https://www.npmjs.com/package/svelte-use-click-outside)
+
+## 📦 Installation
 
 ```
-npm -i svelte-use-click-outside
+npm i svelte-use-click-outside
 ```
 
-## Usage
+## 📑 Usage
 
 ```svelte
 <script>
