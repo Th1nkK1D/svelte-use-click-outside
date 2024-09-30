@@ -6,8 +6,8 @@
     "release": true
   },
   "hooks": {
-    "before:init": ["npm run lint"],
-    "after:bump": ["npm run build"]
+    "before:init": ["npm run lint", "npm run check"],
+    "after:bump": ["rm -r dist", "npm run build"]
   },
   "plugins": {
     "@release-it/conventional-changelog": {
